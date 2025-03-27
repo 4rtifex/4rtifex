@@ -27,18 +27,7 @@
 
 /* Grid background */
 body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: 30px 30px;
-    z-index: -1;
-    pointer-events: none;
+    display: none !important;
 }
 
 /* Scan line effect */
@@ -293,6 +282,18 @@ nav ul li a:hover {
 }
 
 .hero::before {
+    content: "<>";
+    position: absolute;
+    font-size: 20rem;
+    opacity: 0.03;
+    right: -5rem;
+    top: -2rem;
+    font-family: var(--accent-font);
+    color: var(--secondary-color);
+    z-index: 0;
+}
+
+.hero .matrix-effect {
     content: "";
     position: absolute;
     top: 0;
@@ -766,7 +767,7 @@ meta[name="theme-color"] {
     width: 100%;
     height: 100%;
     background-color: rgba(10, 10, 20, 0.9);
-    z-index: 10000;
+    z-index: 10000 !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -966,12 +967,13 @@ h1, h2, h3 {
     position: relative;
 }
 
-h2::after {
+h2[data-text]::after {
     content: attr(data-text);
     position: absolute;
     left: 0;
     top: 0;
     color: var(--glitch-color1);
+    width: 100%;
     overflow: hidden;
     clip: rect(0, 900px, 0, 0);
     animation: flicker 3s infinite linear alternate-reverse;
@@ -1046,6 +1048,7 @@ body.cyberpunk::before {
     background-size: 30px 30px;
     z-index: -1;
     pointer-events: none;
+    display: block !important; /* Force display */
 }
 
 /* Tagline styling */
