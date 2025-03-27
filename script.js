@@ -48,7 +48,127 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cyberpunk welcome terminal text
     setTimeout(terminalAnimation, 500);
+    
+    // Initialize ad banners
+    initAdBanners();
 });
+
+// Initialize ad banner behavior
+function initAdBanners() {
+    console.log("Initializing ad banners...");
+    
+    // Add interaction effects to ad buttons
+    const adButtons = document.querySelectorAll('.ad-cta');
+    adButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'scale(1.05)';
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'scale(1)';
+        });
+        
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            adClickEffect(button);
+        });
+    });
+    
+    // Add hover effects to ad banners
+    const adBanners = document.querySelectorAll('.ad-banner, .ad-square');
+    adBanners.forEach(banner => {
+        banner.addEventListener('mouseenter', () => {
+            banner.style.boxShadow = '0 0 25px rgba(0, 246, 255, 0.3)';
+            banner.style.borderColor = 'var(--secondary-color)';
+        });
+        
+        banner.addEventListener('mouseleave', () => {
+            banner.style.boxShadow = '';
+            banner.style.borderColor = '';
+        });
+    });
+    
+    // Show random ads with delay
+    setTimeout(() => {
+        const topBanner = document.querySelector('.top-banner');
+        if (topBanner) fadeInElement(topBanner);
+    }, 2000);
+    
+    // Periodically highlight a random ad
+    setInterval(highlightRandomAd, 8000);
+}
+
+// Ad click effect animation
+function adClickEffect(button) {
+    // Create ripple effect
+    const ripple = document.createElement('span');
+    ripple.classList.add('ad-ripple');
+    button.appendChild(ripple);
+    
+    // Animate ripple
+    ripple.style.animation = 'ripple 0.8s ease-out';
+    
+    // Remove ripple after animation
+    setTimeout(() => {
+        button.removeChild(ripple);
+        
+        // Show "ad clicked" message
+        const parent = button.closest('.ad-content');
+        const originalText = button.textContent;
+        button.textContent = 'REDIRECTING...';
+        button.style.backgroundColor = 'var(--accent-color)';
+        button.style.borderColor = 'var(--accent-color)';
+        
+        // Reset after delay
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.backgroundColor = '';
+            button.style.borderColor = '';
+        }, 2000);
+    }, 800);
+}
+
+// Fade in element
+function fadeInElement(element) {
+    element.style.opacity = '0';
+    element.style.display = 'block';
+    
+    let opacity = 0;
+    const fadeIn = setInterval(() => {
+        if (opacity >= 1) {
+            clearInterval(fadeIn);
+        }
+        element.style.opacity = opacity.toString();
+        opacity += 0.1;
+    }, 50);
+}
+
+// Highlight a random ad
+function highlightRandomAd() {
+    const ads = document.querySelectorAll('.ad-banner, .ad-square');
+    if (ads.length === 0) return;
+    
+    // Random index
+    const randomIndex = Math.floor(Math.random() * ads.length);
+    const ad = ads[randomIndex];
+    
+    // Add highlight class
+    ad.classList.add('ad-highlight');
+    
+    // Add pulsating effect to button
+    const button = ad.querySelector('.ad-cta');
+    if (button) {
+        button.classList.add('pulsate');
+    }
+    
+    // Remove highlight after delay
+    setTimeout(() => {
+        ad.classList.remove('ad-highlight');
+        if (button) {
+            button.classList.remove('pulsate');
+        }
+    }, 3000);
+}
 
 // Initialize all cyberpunk visual effects
 function initCyberpunkEffects() {
@@ -167,6 +287,7 @@ function terminalAnimation() {
             <div class="terminal-line">ESTABLISHING CONNECTION...</div>
             <div class="terminal-line">ACCESS GRANTED</div>
             <div class="terminal-line">WELCOME TO ARTIFEX INTERFACE</div>
+            <div class="terminal-line">LOADING ADS FROM SPONSORS...</div>
         </div>
     `;
     

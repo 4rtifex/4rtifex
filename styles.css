@@ -1067,4 +1067,562 @@ h2[data-text] {
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
+}
+
+/* Layout overhaul with sidebar and ads */
+/* Reset layout elements */
+.container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page grid layout */
+.page-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+    background: var(--primary-color);
+    border-right: 1px solid var(--border-color);
+    padding: 2rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 200;
+    overflow-y: auto;
+}
+
+.site-branding {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.site-branding h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.site-branding .tagline {
+    font-size: 0.9rem;
+}
+
+.sidebar-nav {
+    margin-bottom: 2rem;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-nav li {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.sidebar-nav li:hover, 
+.sidebar-nav li:focus-within {
+    border-left: 3px solid var(--secondary-color);
+    background: var(--highlight);
+}
+
+.sidebar-nav a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+    font-family: var(--heading-font);
+    font-size: 1rem;
+    position: relative;
+    padding-left: 0.5rem;
+}
+
+.sidebar-nav a:hover {
+    color: var(--secondary-color);
+}
+
+.sidebar-ad {
+    margin: auto 0;
+    padding: 1rem 0;
+}
+
+.theme-controls {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Theme toggle button update */
+#theme-toggle {
+    width: 100%;
+    height: auto;
+    padding: 0.8rem;
+    border-radius: 4px;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+#theme-toggle span {
+    font-family: var(--accent-font);
+    font-size: 0.9rem;
+}
+
+/* Main content area */
+.main-content {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Content grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+}
+
+section.content-section {
+    grid-column: span 12;
+}
+
+#about.content-section {
+    grid-column: span 8;
+}
+
+.ad-square {
+    grid-column: span 4;
+    height: fit-content;
+    margin-top: 2rem;
+}
+
+.ad-square.small {
+    grid-column: span 12;
+    margin: 1rem 0;
+}
+
+.project-grid {
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-grid.second-row {
+    margin-top: 1.5rem;
+}
+
+.skills-section {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+}
+
+.skills-category {
+    grid-column: span 6;
+    margin-bottom: 0;
+}
+
+#contact.content-section {
+    grid-column: span 12;
+}
+
+/* Ad banner styles */
+.ad-banner {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-color) 100%);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 246, 255, 0.15);
+}
+
+.ad-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--fourth-color), var(--accent-color));
+    opacity: 0.8;
+}
+
+.ad-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0z' fill='none'/%3E%3Cpath d='M0 0h1v1H0zm4 4h1v1H4zm4 4h1v1H8zm4 4h1v1h-1zm4 4h1v1h-1z' fill='rgba(0,246,255,0.1)'/%3E%3C/svg%3E");
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.top-banner {
+    width: 100%;
+    z-index: 150;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mid-banner {
+    margin: 0 1.5rem 2rem 1.5rem;
+}
+
+.embedded-banner {
+    grid-column: span 12;
+    margin: 0;
+}
+
+.footer-banner {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+.ad-content {
+    position: relative;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ad-content.vertical {
+    flex-direction: column;
+    text-align: center;
+}
+
+.ad-label {
+    font-family: var(--accent-font);
+    font-size: 0.7rem;
+    color: var(--accent-color);
+    margin-right: 1rem;
+    position: relative;
+    padding: 2px 5px;
+    border: 1px solid var(--accent-color);
+    background: var(--primary-color);
+}
+
+.ad-content p {
+    margin: 0;
+    flex-grow: 1;
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.ad-content.vertical p {
+    margin: 1rem 0;
+}
+
+.ad-square .ad-content {
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.ad-square .ad-content p {
+    margin: 1rem 0;
+}
+
+.ad-square {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-color) 100%);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 246, 255, 0.15);
+}
+
+.ad-square::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--fourth-color), var(--accent-color));
+    opacity: 0.8;
+}
+
+.ad-cta {
+    background: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    font-family: var(--heading-font);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    margin-left: 1rem;
+    letter-spacing: 1px;
+}
+
+.ad-cta:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-bg);
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+.ad-content.vertical .ad-cta {
+    margin-left: 0;
+}
+
+/* Update hero section */
+.hero {
+    margin-bottom: 2rem;
+    padding: 4rem 2rem;
+}
+
+/* Responsive adjustments for the new layout */
+@media (max-width: 1024px) {
+    .page-grid {
+        grid-template-columns: 220px 1fr;
+    }
+    
+    .content-grid {
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    #about.content-section {
+        grid-column: span 12;
+    }
+    
+    .ad-square {
+        grid-column: span 12;
+        margin: 0 0 1.5rem 0;
+    }
+    
+    .skills-category {
+        grid-column: span 12;
+    }
+    
+    .ad-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 0.5rem;
+    }
+    
+    .ad-content p {
+        margin: 0.5rem 0;
+    }
+    
+    .ad-label {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .ad-cta {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem;
+    }
+    
+    .site-branding {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+    
+    .sidebar-nav {
+        margin-bottom: 1rem;
+    }
+    
+    .sidebar-nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .sidebar-nav li {
+        margin: 0.25rem;
+        padding: 0.25rem 0.5rem;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    
+    .sidebar-nav li:hover, 
+    .sidebar-nav li:focus-within {
+        border-left: none;
+        border-bottom: 3px solid var(--secondary-color);
+    }
+    
+    .sidebar-ad {
+        display: none;
+    }
+    
+    .theme-controls {
+        padding-top: 0.5rem;
+    }
+    
+    .mid-banner,
+    .embedded-banner {
+        margin: 0 0 1.5rem 0;
+    }
+    
+    .content-grid {
+        padding: 0;
+    }
+}
+
+/* Fix conflicts with existing styles */
+.container {
+    padding: 0;
+}
+
+/* Override existing styles for hero section */
+.hero {
+    border-radius: 0;
+}
+
+/* Ad animation effects */
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+}
+
+.ad-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.ad-highlight {
+    animation: adHighlight 1.5s ease infinite;
+    border-color: var(--accent-color) !important;
+}
+
+@keyframes adHighlight {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 0, 170, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 0, 170, 0.6);
+    }
+}
+
+.pulsate {
+    animation: buttonPulse 1s ease infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+    }
+}
+
+/* Ad modal/popup styling */
+.ad-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background: var(--card-bg);
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 30px rgba(0, 246, 255, 0.4);
+    z-index: 9999;
+    padding: 2rem;
+    text-align: center;
+    display: none;
+}
+
+.ad-popup h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.ad-popup p {
+    margin-bottom: 1.5rem;
+}
+
+.ad-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.ad-popup-close:hover {
+    color: var(--accent-color);
+}
+
+/* Add more distinct styling for the sponsored banners */
+.ad-content .ad-label {
+    animation: labelBlink 4s infinite;
+}
+
+@keyframes labelBlink {
+    0%, 80%, 100% {
+        opacity: 1;
+    }
+    40%, 60% {
+        opacity: 0.5;
+    }
+}
+
+/* Background for top banner */
+.top-banner {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-color) 100%);
+}
+
+.top-banner::before {
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
 } 
