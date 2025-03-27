@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 :root {
-    --primary-color: #121a24;
+    --primary-color: #050505;
     --secondary-color: #3a82c0;
     --accent-color: #e83c3c;
     --text-color: #e6e6e6;
     --light-text: #ffffff;
-    --dark-bg: #0a0e14;
-    --card-bg: #1a2130;
-    --tag-bg: #2a303c;
-    --border-color: #2d3748;
-    --highlight: #4a5568;
+    --dark-bg: #000000;
+    --card-bg: #0a0a0a;
+    --tag-bg: #111111;
+    --border-color: #1a1a1a;
+    --highlight: #222222;
     --heading-font: 'Playfair Display', Georgia, serif;
     --body-font: 'Lora', 'Times New Roman', serif;
     --accent-font: 'Cormorant Garamond', 'Palatino Linotype', serif;
@@ -55,7 +55,7 @@ header {
 }
 
 nav {
-    background: rgba(10, 14, 20, 0.95);
+    background: rgba(0, 0, 0, 0.95);
     padding: 0.8rem;
     position: sticky;
     top: 0;
@@ -105,7 +105,7 @@ nav ul li a:hover {
 }
 
 .hero {
-    background: linear-gradient(135deg, #121a24 0%, #1c3a5f 100%);
+    background: linear-gradient(135deg, #000000 0%, #101010 100%);
     color: white;
     padding: 5rem 2rem;
     text-align: center;
@@ -163,7 +163,7 @@ nav ul li a:hover {
 }
 
 .language-card {
-    background: var(--primary-color);
+    background: var(--card-bg);
     padding: 1rem;
     text-align: center;
     border-radius: 8px;
@@ -203,7 +203,7 @@ nav ul li a:hover {
     border-radius: 8px;
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: var(--primary-color);
+    background: var(--card-bg);
     display: flex;
     flex-direction: column;
 }
@@ -236,7 +236,7 @@ nav ul li a:hover {
 
 .project-card .tag {
     background: var(--tag-bg);
-    color: var(--text-color);
+    color: var(--light-text);
     padding: 5px 10px;
     border-radius: 50px;
     font-size: 0.8rem;
@@ -272,7 +272,7 @@ nav ul li a:hover {
     border-radius: 50px;
     padding: 8px 15px;
     font-size: 0.95rem;
-    color: var(--text-color);
+    color: var(--light-text);
     transition: all 0.2s;
     font-family: var(--accent-font);
 }
@@ -384,4 +384,8 @@ footer {
     .project-grid {
         grid-template-columns: 1fr;
     }
+}
+
+meta[name="theme-color"] {
+    content: "#000000";
 } 
