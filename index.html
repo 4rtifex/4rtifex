@@ -3,35 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#0a0a14">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="ARTIFEX - Breaking barriers through code & language. Professional translator and developer creating innovative tech solutions.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
     <title>ARTIFEX | Translator • Developer • Tinkerer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="cyberpunk">
     <header>
-        <h1>Artifex</h1>
-        <p>Translator • Developer • Tinkerer</p>
+        <h1 class="glitch-text">Artifex</h1>
+        <p class="tagline">Translator • Developer • Tinkerer</p>
+        <button id="theme-toggle" aria-label="Toggle cyberpunk mode">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
     </header>
     
     <nav>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#languages">Languages</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" data-text="About">About</a></li>
+            <li><a href="#languages" data-text="Languages">Languages</a></li>
+            <li><a href="#projects" data-text="Projects">Projects</a></li>
+            <li><a href="#skills" data-text="Skills">Skills</a></li>
+            <li><a href="#contact" data-text="Contact">Contact</a></li>
         </ul>
     </nav>
     
     <div class="hero">
-        <h2>Breaking Barriers Through Code & Language</h2>
+        <h2 data-text="Breaking Barriers Through Code & Language">Breaking Barriers Through Code & Language</h2>
         <p>I bridge linguistic gaps while building innovative software solutions. Combining my passion for languages with technical expertise to create tools that connect people across cultures.</p>
-        <a href="#projects" class="cta-button">Explore My Work</a>
+        <a href="#projects" class="cta-button">Explore My Work <span class="btn-glitch">_</span></a>
     </div>
     
     <div class="container">
         <section id="about" class="content-section">
-            <h2>About Me</h2>
+            <h2 data-text="About Me">About Me</h2>
             <p>Hello! I'm a professional translator and software developer with a knack for tinkering with technology. My unique background allows me to approach problems from multiple perspectives, combining linguistic precision with technical innovation.</p>
             
             <p>My journey began with a fascination for languages, which eventually led me to translation work. As I helped bridge communication gaps between different cultures, I realized the potential for technology to enhance and scale these efforts. This insight drove me to learn programming, and I've been building tools at the intersection of language and technology ever since.</p>
@@ -40,7 +59,7 @@
         </section>
         
         <section id="languages" class="content-section">
-            <h2>Languages</h2>
+            <h2 data-text="Languages">Languages</h2>
             <p>As a translator, I work with multiple languages to facilitate clear communication across cultural boundaries:</p>
             
             <div class="language-grid">
@@ -66,7 +85,7 @@
         </section>
         
         <section id="projects" class="content-section">
-            <h2>Projects</h2>
+            <h2 data-text="Projects">Projects</h2>
             <div class="project-grid">
                 <div class="project-card">
                     <h3>TranslateGPT</h3>
@@ -112,11 +131,11 @@
         </section>
         
         <section id="skills" class="content-section">
-            <h2>Skills & Expertise</h2>
+            <h2 data-text="Skills & Expertise">Skills & Expertise</h2>
             
             <div class="skills-section">
                 <div class="skills-category">
-                    <h3>Translation & Linguistics</h3>
+                    <h3 data-text="Translation & Linguistics">Translation & Linguistics</h3>
                     <div class="skills-list">
                         <span class="skill-item">Technical Translation</span>
                         <span class="skill-item">Localization</span>
@@ -129,7 +148,7 @@
                 </div>
                 
                 <div class="skills-category">
-                    <h3>Development</h3>
+                    <h3 data-text="Development">Development</h3>
                     <div class="skills-list">
                         <span class="skill-item">Python</span>
                         <span class="skill-item">JavaScript</span>
@@ -142,7 +161,7 @@
                 </div>
                 
                 <div class="skills-category">
-                    <h3>Hardware & Tinkering</h3>
+                    <h3 data-text="Hardware & Tinkering">Hardware & Tinkering</h3>
                     <div class="skills-list">
                         <span class="skill-item">Arduino</span>
                         <span class="skill-item">Raspberry Pi</span>
@@ -156,7 +175,7 @@
         </section>
         
         <section id="contact" class="content-section">
-            <h2>Get In Touch</h2>
+            <h2 data-text="Get In Touch">Get In Touch</h2>
             <p>I'm interested in freelance opportunities, collaborative projects, and discussions about language, technology, or anything at the intersection of both. Feel free to reach out through any of the following channels:</p>
             
             <div class="social-links">
@@ -192,7 +211,7 @@
     </div>
     
     <footer>
-        <p>&copy; <span id="current-year"></span> Artifex. All rights reserved.</p>
+        <p>&copy; <span id="current-year"></span> Artifex. // System Status: <span class="cyber-status">Online</span></p>
     </footer>
     
     <a href="#" class="scroll-to-top">
