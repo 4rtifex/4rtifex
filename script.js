@@ -1,27 +1,19 @@
-// Smooth scrolling for anchor links
+// Main functionality for cyberpunk theme
 document.addEventListener('DOMContentLoaded', function() {
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    console.log("Document loaded, initializing cyberpunk theme...");
     
-    // Check for saved theme preference or use the system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        document.body.setAttribute('data-theme', 'light');
-    } else if (savedTheme === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-    } else {
-        // If no saved preference, use system preference
-        if (!prefersDarkScheme.matches) {
-            document.body.setAttribute('data-theme', 'light');
-        }
-    }
+    // Force cyberpunk theme
+    document.body.classList.add('cyberpunk');
+    document.body.setAttribute('data-theme', 'cyberpunk');
+    
+    // Legacy theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
     
     // Toggle theme when button is clicked
     themeToggle.addEventListener('click', () => {
         if (document.body.getAttribute('data-theme') === 'light') {
-            document.body.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'dark');
+            document.body.setAttribute('data-theme', 'cyberpunk');
+            localStorage.setItem('theme', 'cyberpunk');
         } else {
             document.body.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
@@ -51,6 +43,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Initialize cyberpunk effects
+    setTimeout(initCyberpunkEffects, 100);
+    
+    // Cyberpunk welcome terminal text
+    setTimeout(terminalAnimation, 500);
+});
+
+// Initialize all cyberpunk visual effects
+function initCyberpunkEffects() {
+    console.log("Initializing cyberpunk effects...");
+    
+    // Add data-text attributes for glitch effect if missing
+    document.querySelectorAll('h2, h3').forEach(heading => {
+        if (!heading.hasAttribute('data-text')) {
+            heading.setAttribute('data-text', heading.textContent);
+        }
+    });
+    
     // Add cyberpunk terminal typing effect to project cards
     const projectTitles = document.querySelectorAll('.project-card h3');
     projectTitles.forEach(title => {
@@ -65,12 +75,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add random glitch effect to skill items
     const skillItems = document.querySelectorAll('.skill-item');
     skillItems.forEach(item => {
+        // Add immediate glitch effect to a few random items for initial impact
+        if (Math.random() > 0.7) {
+            setTimeout(() => {
+                applyGlitchEffect(item);
+            }, Math.random() * 2000);
+        }
+        
         // Random glitch effect at random intervals
         setInterval(() => {
             if (Math.random() > 0.95) {
                 applyGlitchEffect(item);
             }
         }, 2000 + Math.random() * 3000);
+        
+        // Add immediate glitch on hover
+        item.addEventListener('mouseenter', () => {
+            applyGlitchEffect(item);
+        });
     });
     
     // Add interactive effect to language cards
@@ -95,12 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.classList.remove('card-glow');
         });
     });
-    
-    // Cyberpunk welcome terminal text
-    terminalAnimation();
-});
-
-// Helper Functions
+}
 
 // Terminal typing animation
 function typeText(element, text, index, speed) {
@@ -139,6 +156,8 @@ function applyGlitchEffect(element) {
 
 // Terminal welcome animation
 function terminalAnimation() {
+    console.log("Starting terminal animation...");
+    
     const terminal = document.createElement('div');
     terminal.classList.add('terminal-overlay');
     terminal.innerHTML = `
